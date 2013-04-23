@@ -21,7 +21,8 @@ class Button {
     stroke(outline);
     rect(x, y, w, h);
     fill(0);
-    text(value, x+5, y+15);
+    textAlign(CENTER, CENTER);
+    text(value, x+(w/2), y+(h/2));
   }
 
   boolean itest() {
