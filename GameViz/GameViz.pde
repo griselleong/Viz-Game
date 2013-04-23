@@ -35,7 +35,7 @@ void setup() {
   opt2 = new Options("Y", int(width*.75), int(height*.77), yopt);//height-50);
   controlPanel = new ControlPanel(width*.9, height*.7, opt1, opt2);
   dataPanel = new DataPanel(xopt, yopt);
-  missionNum = 1;
+  missionNum = 0;
   totalNumMoves = 0;
   /*Noa's setup*/
 
@@ -128,7 +128,6 @@ void draw() {
   // background(255, 255, 255);
   background(200);
   this.controlPanel.draw();
-  dataPanel.updateOpts(xopt, yopt);
   draw_buttons();
   mission1Button = new Button("Mission 1", width*.02, height*.1, width*.1, height*.05, 0);
   mission2Button = new Button("Mission 2", width*.125, height*.1, width*.1, height*.05, 0);
@@ -190,11 +189,11 @@ void draw() {
     dataPanel.setColors(p.getColors());
 
     dataPanel.setMoves(moves);
-    dataPanel.draw();
+    dataPanel.drawPanel();
   }
   else {
     textAlign(LEFT);
-    text("Progen Visualization: "+xopt + " and " + yopt, width*.10, height*.04);
+    text("Progen Visualization: "+xopt + " and " + yopt , width*.10, height*.04);
 
     dataPanel.setIsPie(false);
     /**** Correlation Graph Testing Code ****/
@@ -202,7 +201,7 @@ void draw() {
     float [] yData = moveCountsHashes.get(missionNum).get(yopt);
 
     Correlation corr = new Correlation(xData, yData, players, width*.02, width*.73, height*.15, height*.97);
-
+    corr.dataPanel.updateOpts(xopt, yopt, missionNum);
     corr.draw();
     corr.plot();
     fill(0);
@@ -250,16 +249,16 @@ void mouseClicked() {
   }
   if (mission1Button.itest()) {
     pie = 1;
-    missionNum = 1;
+    missionNum = 0;
   } 
   if (mission2Button.itest()) {
     pie = 2;
-    missionNum = 2;
+    missionNum = 1;
   } 
   if (mission3Button.itest()) {
     pie = 3;
-    missionNum = 3;
-  } 
+    missionNum = 2;
+  }
   optItest();
 }
 

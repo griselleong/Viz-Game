@@ -65,7 +65,7 @@ class Correlation extends Graph{
   }*/
   if (hovered.size() > 0)
   dataPanel.setHoveredPoints(hovered);
-  dataPanel.draw();
+  dataPanel.drawPanel();
    
  }
  
