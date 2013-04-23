@@ -50,7 +50,7 @@ class DataPanel {
           fill(255,0,0);
           text("Player " + hoveredPs.get(i).player.getId(), width*.76, height*.2 + i*20); 
           fill(0);
-          text( xopt + ":" + hoveredPs.get(i).player.getCountForMove(xopt, 2) + "   " + yopt+":" + hoveredPs.get(i).player.getCountForMove(yopt, 2), width*.86, height*.2 + i*20);
+          text( xopt + ":" + hoveredPs.get(i).player.getCountForMove(xopt, 0) + "   " + yopt+":" + hoveredPs.get(i).player.getCountForMove(yopt, 0), width*.86, height*.2 + i*20);
         }
       }
     }
