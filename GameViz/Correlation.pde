@@ -33,6 +33,7 @@ class Correlation extends Graph{
    yRange = max(yData) + 1;
    
    xInterval = xRange/graphGapWidth;
+   println(xRange);
    yInterval = yRange/graphGapWidth;
  
  }
@@ -51,7 +52,6 @@ class Correlation extends Graph{
  
  void plot(){
    hovered = new ArrayList<Point>();
-   super.draw();
    for (int i = 0; i < xData.length; i++){
      float xLoc = mapXPos(xData[i]);
      float yLoc = mapYPos(yData[i]);
@@ -67,6 +67,32 @@ class Correlation extends Graph{
   dataPanel.setHoveredPoints(hovered);
   dataPanel.draw();
    
+ }
+ 
+ void draw(){
+  super.draw();
+ 
+ //draw x-axis line
+ line(graphXStart, graphYEnd, graphXEnd, graphYEnd);
+
+ //draw y-axis line
+ line(graphXStart, graphYStart, graphXStart, graphYEnd);
+   
+   
+ DecimalFormat form = new DecimalFormat("0.00"); 
+ float intervalVal = 0;
+  
+ //x-axis intervals
+ for (float i = graphXStart; i < graphXEnd; i+=graphGapWidth){
+    text(form.format(intervalVal), i, graphYEnd + 20);
+    intervalVal += xInterval;
+ }
+ 
+ //y-axis intervals
+ for (float i = graphYStart; i < graphYEnd; i+=graphGapWidth){
+    text(form.format(intervalVal), graphXStart - 45, i);
+    intervalVal += yInterval;
+ } 
  }
  
 

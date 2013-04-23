@@ -1,7 +1,5 @@
-/**
-TAKE NOTE: translate and scale are bad if we want
-to do any mouseover mouseX and mouseY do not translate or scale
-**/
+import java.text.*;
+
 ArrayList<Player> allplayers;
 ArrayList<Player> players; //valid players
 ControlPanel controlPanel;
@@ -9,6 +7,10 @@ DataPanel dataPanel;
 HashMap moveCountsByMission;
 ArrayList<HashMap<String, float[]>> moveCountsHashes;
 ArrayList<HashMap<String, Float>> moveTotals;
+
+String[] moves = { 
+    "U-M", "U-C", "P", "U-S", "D", "M", "O", "None", "U-G", "S", "C", "A"
+};
 
 
 boolean pie_view;
@@ -23,7 +25,7 @@ void setup(){
   frame.setResizable(true);
   //background(255, 255, 255);
   pie_view = true;
-  pie = 1;
+  pie = 1;  
   xopt = "U-M";
   yopt = "U-C";
   opt1 = new Options("X", int(width*.75), int(height*.66), xopt);//height-80);
@@ -32,9 +34,11 @@ void setup(){
   dataPanel = new DataPanel(xopt, yopt);
   /*Noa's setup*/
   
+  /* moved this as global 
   String[] moves = { 
     "U-M", "U-C", "P", "U-S", "D", "M", "O", "None", "U-G", "S", "C", "A"
   };
+  */
 
   moveCountsHashes = new ArrayList<HashMap<String, float[]>>();
   moveTotals = new ArrayList<HashMap<String, Float>>();
@@ -138,7 +142,7 @@ void draw(){
   }
   
   //create new pie with percentages
-  float [] percentages = {10, 2.5, 12.5, 25, 50};
+  float [] percentages = {10, 4.5, 12.5, 10, 12, 5, 18, 10, 10, 8};
   Pie p;
   if(pie == 1){
     text("Mission 1", width*.45, 30);
@@ -153,8 +157,11 @@ void draw(){
     p = new Pie(percentages, centerXCoord, centerYCoord, smallerDimension*0.75,width*.02, width*.73, height*.15 , height*.97);    
   }
   
-  p.drawPie();
- dataPanel.draw();
+  p.drawPie();  
+  dataPanel.setColors(p.getColors());
+  
+  dataPanel.setMoves(moves);
+  dataPanel.draw();
   }
   else{
     text("Progen Visualization: "+xopt + " and " + yopt, width*.04, height*.04);
@@ -170,6 +177,7 @@ void draw(){
  //Correlation corr = new Correlation(xData, yData, 0, width*.9, 0, height*.9
   Correlation corr = new Correlation(m1MData, m1DData, players, width*.02, width*.73, height*.15 , height*.97);
 
+ corr.draw();
  corr.plot();
  fill(0);
 

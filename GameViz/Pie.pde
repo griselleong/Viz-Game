@@ -4,14 +4,20 @@ class Pie extends Graph {
   float centerYCoord;
   float diameter;
 
-  //need to randomly generate color scheme later
-  color [] colors = 
-  {
-    color(255, 255, 0), 
-    color(100, 100, 255), 
-    color(0, 100, 255), 
-    color(255, 0, 255), 
-    color(100, 255, 255)
+  //hardcoded color scheme
+  color [] colors = {
+    color(255, 57, 0),
+    color(255, 152, 64),
+    color(1, 147, 154),
+    color(0, 117, 54),
+    color(255, 107, 64),
+    color(255, 118, 0),
+    color(52, 198, 205),
+    color(0, 180, 84),
+    color(191, 80, 48),
+    color(255, 180, 115),
+    color(0, 96, 100),
+    color(34, 135, 81)    
   };
 
   //  Pie(float [] p, float x, float y, float d){
@@ -19,13 +25,13 @@ class Pie extends Graph {
   Pie(float [] p, float x, float y, float d, float xStart, float xEnd, float yStart, float yEnd) {
     super(xStart, xEnd, yStart, yEnd, false); 
 
-
     percents = p;
     centerXCoord = x;
     centerYCoord = y;
     diameter = d;
+     
   }
-
+  
   float percentToAngle(float percent) {
     return (percent/100)*360;
   }  
@@ -62,6 +68,10 @@ class Pie extends Graph {
 
       drawSlice(degToRadians(startAngle), degToRadians(endAngle), colors[i]);
     }
+  }
+  
+  public color [] getColors(){
+    return colors; 
   }
 }
 

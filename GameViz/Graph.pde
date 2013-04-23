@@ -16,7 +16,7 @@ class Graph {
   float totalHeight;
   float totalWidth;
 
-  float graphGapWidth = 40;  //gap size of intervals in graph
+  float graphGapWidth = 80;  //gap size of intervals in graph
   float labelWidth = width*.07; //width of label area of both axes
   float outerMargin = 30; //margin in top and right sides of graph
 
@@ -67,7 +67,7 @@ class Graph {
     fill(0);
 
 
-
+/* correlation specific stuff moved to Correlation class
     if (isCorrPlot) {
       //draw x-axis line
       line(graphXStart, graphYEnd, graphXEnd, graphYEnd);
@@ -75,6 +75,7 @@ class Graph {
       //draw y-axis line
       line(graphXStart, graphYStart, graphXStart, graphYEnd);
     }
+    */
   }
 
   void drawIntervals() {
