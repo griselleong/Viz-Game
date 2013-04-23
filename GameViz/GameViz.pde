@@ -10,6 +10,7 @@ ArrayList<HashMap<String, Float>> moveTotals;
 ArrayList<float[]> movePercentages;  // <missionNum, floatarrayOfPercentages
 int missionNum;
 int totalNumMoves;
+Button mission1Button, mission2Button, mission3Button;
 
 String[] moves = { 
   "U-M", "U-C", "P", "U-S", "D", "M", "O", "None", "U-G", "S", "C", "A"
@@ -26,7 +27,6 @@ Options opt2;
 void setup() {
   size(1024, 800);
   frame.setResizable(true);
-  //background(255, 255, 255);
   pie_view = true;
   pie = 1;  
   xopt = "U-M";
@@ -38,12 +38,6 @@ void setup() {
   missionNum = 1;
   totalNumMoves = 0;
   /*Noa's setup*/
-
-  /* moved this as global 
-   String[] moves = { 
-   "U-M", "U-C", "P", "U-S", "D", "M", "O", "None", "U-G", "S", "C", "A"
-   };
-   */
 
   moveCountsHashes = new ArrayList<HashMap<String, float[]>>();
   moveTotals = new ArrayList<HashMap<String, Float>>();
@@ -98,9 +92,6 @@ void setup() {
       }
     }
   }
-  println("Move totals: " );
-  println(moveTotals);
-  //ArrayList<HashMap<String, Float>> moveTotals;
 
   /* Calculate aggregate counts. */
   for (int i=0; i<moveCountsHashes.size(); i++) {
@@ -110,21 +101,25 @@ void setup() {
       float p = moveTotals.get(i).get(moves[k]) / totalNumMoves;
       percentages[k] = p;
     }
-   
+
     movePercentages.add(percentages);
   }
-
+  /* Print move counts, move totals, and move percentages. */
   println("PRINTING HASHES.");
   for (int i=0; i<moveCountsHashes.size(); i++) 
     println("MISSION " + i + ": " + moveCountsHashes.get(i));
 
-  println("PRINTIN G TOTOALS.");
+  println("PRINTING TOTOALS.");
   for (int i=0; i<moveTotals.size(); i++)
     println("MISSION " + i + ": " + moveTotals.get(i));
-    
-      println("PRINTIN G PERCENTAGES.");
-  for (int i=0; i<movePercentages.size(); i++)
+
+  println("PRINTIN G PERCENTAGES.");
+  for (int i=0; i<movePercentages.size(); i++) {
     println("MISSION " + i + ": " + movePercentages.get(i));
+    float[] d = movePercentages.get(i);
+    for (int j=0; j<d.length; j++)
+      print(d[j] + " " );
+  }
 }
 
 
@@ -132,16 +127,32 @@ void setup() {
 void draw() {
   // background(255, 255, 255);
   background(200);
-  // background(0);
   this.controlPanel.draw();
   dataPanel.updateOpts(xopt, yopt);
-
+  draw_buttons();
+  mission1Button = new Button("Mission 1", width*.02, height*.1, width*.1, height*.05, 0);
+  mission2Button = new Button("Mission 2", width*.125, height*.1, width*.1, height*.05, 0);
+  mission3Button = new Button("Mission 3", width*.23, height*.1, width*.1, height*.05, 0);
+  mission1Button.render();
+  mission2Button.render();
+  mission3Button.render();
   /* Draw title */
   fill(255);
   stroke(0);
   rect(width*.02, height*.02, width*.7, height*.06);
   fill(0);
 
+
+
+  if (pie == 1) {
+    text("Mission 1", width*.45, 30);
+  }
+  else if (pie == 2) {
+    text("Mission 2", width*.45, 30);
+  }
+  else { //3rd pie
+    text("Mission 3", width*.45, 30);
+  }
   if (pie_view) {
     text("Progen Visualization", width*.10, height*.04);
 
@@ -161,9 +172,6 @@ void draw() {
 
     //create new pie with percentages
     float [] percentages = movePercentages.get(pie);
-    /*float [] percentages = {
-      10, 4.5, 12.5, 10, 12, 5, 18, 10, 10, 8
-    };*/
     Pie p;
     if (pie == 1) {
       text("Mission 1", width*.45, 30);
@@ -190,25 +198,15 @@ void draw() {
 
     dataPanel.setIsPie(false);
     /**** Correlation Graph Testing Code ****/
-    float [] m1MData = moveCountsHashes.get(missionNum).get(xopt);
-    float [] m1DData = moveCountsHashes.get(missionNum).get(yopt);
+    float [] xData = moveCountsHashes.get(missionNum).get(xopt);
+    float [] yData = moveCountsHashes.get(missionNum).get(yopt);
 
-    float [] xData = {
-      0.0, 1.0, 2.0, 3.0, 4.0
-    };
-    float [] yData = {
-      0.0, 1.0, 2.0, 3.0, 4.0
-    };
-
-    //Correlation corr = new Correlation(xData, yData, 0, width*.9, 0, height*.9
-    Correlation corr = new Correlation(m1MData, m1DData, players, width*.02, width*.73, height*.15, height*.97);
+    Correlation corr = new Correlation(xData, yData, players, width*.02, width*.73, height*.15, height*.97);
 
     corr.draw();
     corr.plot();
     fill(0);
   }
-  // dataPanel.draw();
-  draw_buttons();
 }
 
 void draw_buttons() {
@@ -228,21 +226,6 @@ void draw_buttons() {
 
   if (pie_view) {
     text("Correlation Graph", (width-160) + 70, 20+15);
-    stroke(0);
-    fill(255, 255, 255);
-    rect(width*.2, height*.1, 70, 30); 
-    fill(0);
-    text("Pie 1", width*.2+35, height*.1 + 15);
-    stroke(0);
-    fill(255, 255, 255);
-    rect(width*.4, height*.1, 70, 30); 
-    fill(0);
-    text("Pie 2", width*.4+35, height*.1 + 15);
-    stroke(0);
-    fill(255, 255, 255);
-    rect(width*.6, height*.1, 70, 30); 
-    fill(0);
-    text("Pie 3", width*.6+35, height*.1 + 15);
   }
   else { //correlation view
     text("Pie Graph", (width-160) + 70, 20+15);
@@ -265,15 +248,15 @@ void mouseClicked() {
       pie_view = true;
     }
   }
-  if (mouseX < width*.2 + 70 && mouseX > width*.2 && mouseY > height*.1 && mouseY < height*.1 + 30) {
+  if (mission1Button.itest()) {
     pie = 1;
     missionNum = 1;
   } 
-  if (mouseX < width*.4 + 70 && mouseX > width*.4 && mouseY > height*.1 && mouseY < height*.1 + 30) {
+  if (mission2Button.itest()) {
     pie = 2;
     missionNum = 2;
   } 
-  if (mouseX < width*.6 + 70 && mouseX > width*.6 && mouseY > height*.1 && mouseY < height*.1+ 30) {
+  if (mission3Button.itest()) {
     pie = 3;
     missionNum = 3;
   } 

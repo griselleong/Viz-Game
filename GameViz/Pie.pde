@@ -21,6 +21,7 @@ class Pie extends Graph {
   };
 
 
+/* Note: Pie now takes in an array of 'counts' that it then figures out percentages from. Right now, I'm actually feeding it percentages - but it still works, and is generalizable!*/
   Pie(float [] c, float x, float y, float d, float xStart, float xEnd, float yStart, float yEnd) {
     super(xStart, xEnd, yStart, yEnd, false); 
 

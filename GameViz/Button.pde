@@ -1,15 +1,18 @@
 class Button {
   String value;
-  int x, y, w, h; 
+  float x, y, w, h; 
   color outline;
 
-  Button(String _value, int _x, int _y, int _w, int _h) {
+  Button(String _value, float _x, float _y, float _w, float _h, color out) {
     value = _value;
     x = _x;
     y = _y;
     w = _w;
     h = _h; 
+    if (out == -1)
     outline = color(255, 255, 255);
+    else 
+    outline = out;
   }
 
   String getVal() {

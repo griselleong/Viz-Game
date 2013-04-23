@@ -32,12 +32,12 @@ class Options {
       else
         c = 1;
       if (c == 0) {
-        options[i] = new Button(optNames[i], x + 5 + (i%5)*50, int(y + width*.01 + c*30), w, 20); 
+        options[i] = new Button(optNames[i], x + 5 + (i%5)*50, int(y + width*.01 + c*30), w, 20, -1); 
         println("c is 0. i : " + i );
       }
       else {
         println("i: " + i + " optNames[i] : " + optNames[i] + " (i%(optNames.length-i))*30, is: " + (i%(optNames.length-i))*30);
-        options[i] = new Button(optNames[i], x  + 5 + ((i-4) % (optNames.length-4))*30, int(y + width*.01 + c*30), w, 20);
+        options[i] = new Button(optNames[i], x  + 5 + ((i-4) % (optNames.length-4))*30, int(y + width*.01 + c*30), w, 20,-1);
       }
     }
   } 

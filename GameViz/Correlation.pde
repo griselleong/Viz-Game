@@ -33,7 +33,7 @@ class Correlation extends Graph{
    yRange = max(yData) + 1;
    
    xInterval = xRange/graphGapWidth;
-   println(xRange);
+   //println(xRange);
    yInterval = yRange/graphGapWidth;
  
  }
