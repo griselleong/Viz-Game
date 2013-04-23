@@ -33,7 +33,6 @@ class Correlation extends Graph{
    yRange = max(yData) + 1;
    
    xInterval = xRange/graphGapWidth;
-   //println(xRange);
    yInterval = yRange/graphGapWidth;
  
  }
@@ -80,18 +79,21 @@ class Correlation extends Graph{
    
    
  DecimalFormat form = new DecimalFormat("0.00"); 
- float intervalVal = 0;
-  
+ 
+
  //x-axis intervals
- for (float i = graphXStart; i < graphXEnd; i+=graphGapWidth){
-    text(form.format(intervalVal), i, graphYEnd + 20);
-    intervalVal += xInterval;
+ float pos = graphXStart;
+ for (float i = 0; i < xRange; i+=xInterval){
+    text(form.format(i), pos, graphYEnd + 20);
+    pos += graphGapWidth;
+    
  }
  
  //y-axis intervals
- for (float i = graphYStart; i < graphYEnd; i+=graphGapWidth){
-    text(form.format(intervalVal), graphXStart - 45, i);
-    intervalVal += yInterval;
+ pos = graphYStart;
+ for (float i = 0; i < yRange; i+=yInterval){
+    text(form.format(i), graphXStart - 45, graphYEnd - pos);
+    pos += graphGapWidth;
  } 
  }
  
