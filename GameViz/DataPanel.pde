@@ -83,10 +83,16 @@ class DataPanel {
       if (pointsSet) {
         fill(0);
         for (int i=0; i<hoveredPs.size(); i++) {
+          if(i < 15){
           fill(255, 95, 0);          
           text("Player " + hoveredPs.get(i).player.getId(), width*.76, height*.2 + i*20); 
           fill(0);
           text( xopt + ":" + hoveredPs.get(i).player.getCountForMove(xopt, this.m) + "   " + yopt+":" + hoveredPs.get(i).player.getCountForMove(yopt, this.m), width*.86, height*.2 + i*20);
+          }
+          if(i == 15){
+           text("Plus " + str(hoveredPs.size()-15) + " others not shown", width*.76, height*.2 + i*20); 
+
+          }
         }
       }
     }
