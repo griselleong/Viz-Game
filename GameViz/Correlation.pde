@@ -26,7 +26,7 @@ class Correlation extends Graph{
    yData = y;
    players = _players;
    hovered = new ArrayList <Point>();
-   dataPanel = new DataPanel();
+   dataPanel = new DataPanel(xopt, yopt);
         
    //add 1 to the range so that max data points are not at the edges
    xRange = max(xData) + 1;
@@ -60,9 +60,9 @@ class Correlation extends Graph{
        hovered.add(p);
      }
    }
-  for(int j=0; j<hovered.size();j++){
+  /*for(int j=0; j<hovered.size();j++){
    hovered.get(j).player.printInfo(width-200, height-300 + j*30); 
-  }
+  }*/
   if (hovered.size() > 0)
   dataPanel.setHoveredPoints(hovered);
   dataPanel.draw();

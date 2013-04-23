@@ -5,7 +5,7 @@ class Options {
   Button[] options;
   int x, y;
 
-  Options(String _name, int _x, int _y) {
+  Options(String _name, int _x, int _y, String default_selected) {
     println("in options construtor");
     this.name = _name;
     this.optNames = new String[] {
@@ -13,7 +13,7 @@ class Options {
     };
     this.x = _x;
     this.y = _y;
-    this.selected = "S";
+    this.selected = default_selected;
 
     options = new Button[optNames.length];
     int w = 20;

@@ -26,10 +26,10 @@ void setup(){
   pie = 1;
   xopt = "U-M";
   yopt = "U-C";
-  opt1 = new Options("X", int(width*.75), int(height*.66));//height-80);
-  opt2 = new Options("Y", int(width*.75), int(height*.77));//height-50);
+  opt1 = new Options("X", int(width*.75), int(height*.66), xopt);//height-80);
+  opt2 = new Options("Y", int(width*.75), int(height*.77), yopt);//height-50);
   controlPanel = new ControlPanel(width*.9, height*.7, opt1, opt2);
-  dataPanel = new DataPanel();
+  dataPanel = new DataPanel(xopt, yopt);
   /*Noa's setup*/
   
   String[] moves = { 
@@ -113,16 +113,17 @@ void draw(){
   background(200);
  // background(0);
   this.controlPanel.draw();
-  
+  dataPanel.updateOpts(xopt, yopt);
   
   /* Draw title */
   fill(255);
   stroke(0);
   rect(width*.02, height*.02, width*.7, height*.06);
   fill(0);
-  text("Progen Visualization", width*.04, height*.04);
   
   if(pie_view){
+    text("Progen Visualization", width*.04, height*.04);
+
  dataPanel.setIsPie(true);
  /**** Pie Testing Code ****/ 
  
@@ -156,6 +157,8 @@ void draw(){
  dataPanel.draw();
   }
   else{
+    text("Progen Visualization: "+xopt + " and " + yopt, width*.04, height*.04);
+
     dataPanel.setIsPie(false);
  /**** Correlation Graph Testing Code ****/
   float [] m1MData = moveCountsHashes.get(0).get(xopt);
@@ -169,8 +172,6 @@ void draw(){
 
  corr.plot();
  fill(0);
- text(xopt, 0, 10);
- text(yopt, 0, 50);
 
   }
  // dataPanel.draw();
