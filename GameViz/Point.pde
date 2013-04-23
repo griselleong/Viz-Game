@@ -3,7 +3,7 @@ class Point{
  //one color for now, but this can be a parameter
  //passed for multiple colors in the future
  Player player;
- color c = color(255, 0, 0);
+ color c;
  float diameter = 8;
  float xLoc;
  float yLoc;

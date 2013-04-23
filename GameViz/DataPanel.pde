@@ -40,7 +40,6 @@ class DataPanel {
   public void updateOpts(String _x, String _y, int num) {
     xopt = _x;
     yopt = _y;
-    println("Setting " + this.m + " to " + num);
     this.m = num;
   }
 
@@ -84,7 +83,7 @@ class DataPanel {
       if (pointsSet) {
         fill(0);
         for (int i=0; i<hoveredPs.size(); i++) {
-          fill(255, 0, 0);
+          fill(255, 95, 0);          
           text("Player " + hoveredPs.get(i).player.getId(), width*.76, height*.2 + i*20); 
           fill(0);
           text( xopt + ":" + hoveredPs.get(i).player.getCountForMove(xopt, this.m) + "   " + yopt+":" + hoveredPs.get(i).player.getCountForMove(yopt, this.m), width*.86, height*.2 + i*20);

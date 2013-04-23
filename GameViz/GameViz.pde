@@ -128,13 +128,6 @@ void draw() {
   // background(255, 255, 255);
   background(200);
   this.controlPanel.draw();
-  draw_buttons();
-  mission1Button = new Button("Mission 1", width*.02, height*.1, width*.1, height*.05, 0);
-  mission2Button = new Button("Mission 2", width*.125, height*.1, width*.1, height*.05, 0);
-  mission3Button = new Button("Mission 3", width*.23, height*.1, width*.1, height*.05, 0);
-  mission1Button.render();
-  mission2Button.render();
-  mission3Button.render();
   /* Draw title */
   fill(255);
   stroke(0);
@@ -206,6 +199,14 @@ void draw() {
     corr.plot();
     fill(0);
   }
+    draw_buttons();
+  mission1Button = new Button("Mission 1", width*.02, height*.1, width*.1, height*.05, 0, missionNum,0);
+  mission2Button = new Button("Mission 2", width*.125, height*.1, width*.1, height*.05, 0, missionNum,1);
+  mission3Button = new Button("Mission 3", width*.23, height*.1, width*.1, height*.05, 0, missionNum,2);
+  mission1Button.render();
+  mission2Button.render();
+  mission3Button.render();
+
 }
 
 void draw_buttons() {
