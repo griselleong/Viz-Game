@@ -2,6 +2,7 @@ class Button {
   String value;
   float x, y, w, h; 
   color outline;
+  color background; 
 
   Button(String _value, float _x, float _y, float _w, float _h, color out) {
     value = _value;

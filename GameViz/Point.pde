@@ -3,7 +3,7 @@ class Point{
  //one color for now, but this can be a parameter
  //passed for multiple colors in the future
  Player player;
- color c = color(255, 0, 0);
+ color c;
  float diameter = 6;
  float xLoc;
  float yLoc;
@@ -24,11 +24,11 @@ class Point{
  }
  
  boolean itest(){
-  if(mouseX > xLoc && mouseX < xLoc + diameter/2 && mouseY > yLoc && mouseY < yLoc + diameter/2){
-    c = color(0, 255, 0);
+  if(mouseX > xLoc - diameter/2 && mouseX < xLoc + diameter/2 && mouseY > yLoc - diameter/2 && mouseY < yLoc + diameter/2){
+    c = color(255, 95, 0);
     return true;
   } 
-  c = color(255, 0, 0);
+  c = color(5, 125, 159);
   return false;
  }
  

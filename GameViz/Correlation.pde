@@ -32,8 +32,9 @@ class Correlation extends Graph{
    xRange = max(xData) + 1;
    yRange = max(yData) + 1;
    
-   xInterval = xRange/graphGapWidth;
-   yInterval = yRange/graphGapWidth;
+   
+   xInterval = xRange/(graphWidth/graphGapWidth);
+   yInterval = yRange/(graphHeight/graphGapWidth);
  
  }
  
@@ -90,7 +91,7 @@ class Correlation extends Graph{
  }
  
  //y-axis intervals
- pos = graphYStart;
+ pos = 0;
  for (float i = 0; i < yRange; i+=yInterval){
     text(form.format(i), graphXStart - 45, graphYEnd - pos);
     pos += graphGapWidth;
