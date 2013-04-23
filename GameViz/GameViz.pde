@@ -4,7 +4,8 @@ to do any mouseover mouseX and mouseY do not translate or scale
 **/
 ArrayList<Player> allplayers;
 ArrayList<Player> players; //valid players
-
+ControlPanel controlPanel;
+DataPanel dataPanel;
 HashMap moveCountsByMission;
 ArrayList<HashMap<String, float[]>> moveCountsHashes;
 ArrayList<HashMap<String, Float>> moveTotals;
@@ -20,14 +21,15 @@ Options opt2;
 void setup(){
   size(1024, 800);
   frame.setResizable(true);
-  background(255, 255, 255);
+  //background(255, 255, 255);
   pie_view = true;
   pie = 1;
   xopt = "U-M";
   yopt = "U-C";
-  opt1 = new Options("X", 50, height-80);
-  opt2 = new Options("Y", 50, height-50);
-  
+  opt1 = new Options("X", int(width*.75), int(height*.66));//height-80);
+  opt2 = new Options("Y", int(width*.75), int(height*.77));//height-50);
+  controlPanel = new ControlPanel(width*.9, height*.7, opt1, opt2);
+  dataPanel = new DataPanel();
   /*Noa's setup*/
   
   String[] moves = { 
@@ -107,15 +109,25 @@ void setup(){
 }
 
 void draw(){
-  background(255, 255, 255);
-  draw_buttons(); 
+// background(255, 255, 255);
+  background(200);
+ // background(0);
+  this.controlPanel.draw();
+  
+  
+  /* Draw title */
+  fill(255);
+  stroke(0);
+  rect(width*.02, height*.02, width*.7, height*.06);
+  fill(0);
+  text("Progen Visualization", width*.04, height*.04);
   
   if(pie_view){
- 
+ dataPanel.setIsPie(true);
  /**** Pie Testing Code ****/ 
  
-  float centerXCoord = width/2;
-  float centerYCoord = height/2;
+  float centerXCoord = width*.38;
+  float centerYCoord = height*.56;
   float smallerDimension = 0;
   
   if (width < height){
@@ -129,21 +141,22 @@ void draw(){
   Pie p;
   if(pie == 1){
     text("Mission 1", width*.45, 30);
-    p = new Pie(percentages, centerXCoord, centerYCoord, smallerDimension*0.8);
+    p = new Pie(percentages, centerXCoord, centerYCoord, smallerDimension*0.75,width*.02, width*.73, height*.15 , height*.97);
   }
   else if(pie == 2){
     text("Mission 2", width*.45, 30);
-    p = new Pie(percentages, centerXCoord, centerYCoord, smallerDimension*0.8);
+    p = new Pie(percentages, centerXCoord, centerYCoord, smallerDimension*0.75,width*.02, width*.73, height*.15 , height*.97);
   }
   else{ //3rd pie
     text("Mission 3", width*.45, 30);
-    p = new Pie(percentages, centerXCoord, centerYCoord, smallerDimension*0.8);    
+    p = new Pie(percentages, centerXCoord, centerYCoord, smallerDimension*0.75,width*.02, width*.73, height*.15 , height*.97);    
   }
   
   p.drawPie();
- 
+ dataPanel.draw();
   }
   else{
+    dataPanel.setIsPie(false);
  /**** Correlation Graph Testing Code ****/
   float [] m1MData = moveCountsHashes.get(0).get(xopt);
   float [] m1DData = moveCountsHashes.get(0).get(yopt);
@@ -152,7 +165,7 @@ void draw(){
  float [] yData = {0.0, 1.0, 2.0, 3.0, 4.0};
  
  //Correlation corr = new Correlation(xData, yData, 0, width*.9, 0, height*.9
-  Correlation corr = new Correlation(m1MData, m1DData, players, 0, width*.7, height*.1 , height*.8);
+  Correlation corr = new Correlation(m1MData, m1DData, players, width*.02, width*.73, height*.15 , height*.97);
 
  corr.plot();
  fill(0);
@@ -160,6 +173,9 @@ void draw(){
  text(yopt, 0, 50);
 
   }
+ // dataPanel.draw();
+    draw_buttons(); 
+
  
 }
 
@@ -172,19 +188,19 @@ void draw_buttons(){
  if(pie_view){
     stroke(0);
     fill(255, 255, 255);
-    rect(width*.2, height-40, 70,30); 
+    rect(width*.2, height*.1, 70,30); 
     fill(0);
-    text("Pie 1", width*.2+5, height-20);
+    text("Pie 1", width*.2+5, height*.12);
     stroke(0);
     fill(255, 255, 255);
-    rect(width*.4, height-40, 70,30); 
+    rect(width*.4, height*.1, 70,30); 
     fill(0);
-    text("Pie 2", width*.4+5, height-20);
+    text("Pie 2", width*.4+5, height*.12);
     stroke(0);
     fill(255, 255, 255);
-    rect(width*.6, height-40, 70,30); 
+    rect(width*.6, height*.1, 70,30); 
     fill(0);
-    text("Pie 3", width*.6+5, height-20);
+    text("Pie 3", width*.6+5, height*.12);
  }
  else{ //correlation view
   draw_options(); 
@@ -205,13 +221,13 @@ void mouseClicked(){
      pie_view = true; 
     }
  }
- if(mouseX < width*.2 + 70 && mouseX > width*.2 && mouseY > height-40 && mouseY < height-10){
+ if(mouseX < width*.2 + 70 && mouseX > width*.2 && mouseY > height*.1 && mouseY < height*.1 + 30){
   pie = 1;
  } 
- if(mouseX < width*.4 + 70 && mouseX > width*.4 && mouseY > height-40 && mouseY < height-10){
+ if(mouseX < width*.4 + 70 && mouseX > width*.4 && mouseY > height*.1 && mouseY < height*.1 + 30){
   pie = 2;
  } 
- if(mouseX < width*.6 + 70 && mouseX > width*.6 && mouseY > height-40 && mouseY < height-10){
+ if(mouseX < width*.6 + 70 && mouseX > width*.6 && mouseY > height*.1 && mouseY < height*.1+ 30){
   pie = 3;
  } 
  optItest();

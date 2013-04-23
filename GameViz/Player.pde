@@ -111,6 +111,8 @@ class Player {
     return this.numMissions;
   }
   
+  
+  
   public void printInfo(int x, int y){
     fill(0);
     text("Player "+id, x, y);

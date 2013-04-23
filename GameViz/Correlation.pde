@@ -13,6 +13,7 @@ class Correlation extends Graph{
  //max range of x and y data to be plotted
  float xRange;
  float yRange; 
+ DataPanel dataPanel;
   
  ArrayList<Point> hovered;
  
@@ -20,11 +21,12 @@ class Correlation extends Graph{
  float yInterval;         //y axis label gap size
  
  Correlation(float [] x, float [] y, ArrayList<Player> _players, float xStart, float xEnd, float yStart, float yEnd){
-   super(xStart, xEnd, yStart, yEnd);
+   super(xStart, xEnd, yStart, yEnd, true);
    xData = x;
    yData = y;
    players = _players;
    hovered = new ArrayList <Point>();
+   dataPanel = new DataPanel();
         
    //add 1 to the range so that max data points are not at the edges
    xRange = max(xData) + 1;
@@ -48,6 +50,7 @@ class Correlation extends Graph{
  }
  
  void plot(){
+   hovered = new ArrayList<Point>();
    super.draw();
    for (int i = 0; i < xData.length; i++){
      float xLoc = mapXPos(xData[i]);
@@ -60,6 +63,9 @@ class Correlation extends Graph{
   for(int j=0; j<hovered.size();j++){
    hovered.get(j).player.printInfo(width-200, height-300 + j*30); 
   }
+  if (hovered.size() > 0)
+  dataPanel.setHoveredPoints(hovered);
+  dataPanel.draw();
    
  }
  
