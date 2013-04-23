@@ -50,6 +50,7 @@ class DataPanel {
     fill(255);
     stroke(0);
     if (this.isPie) {
+      textAlign(LEFT, CENTER);
       rect(width*.75, height*.1, width*.23, height*.52);
       fill(0);
       text("LEGEND", width*.77, height*.13);
@@ -71,6 +72,7 @@ class DataPanel {
       }
     } 
     else {
+      textAlign(LEFT, CENTER);
       rect(width*.75, height*.1, width*.23, height*.52);
       fill(0);
       text("Number of Moves per Player", width*.77, height*.13);

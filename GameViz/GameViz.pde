@@ -126,7 +126,7 @@ void draw(){
   fill(0);
   
   if(pie_view){
-    text("Progen Visualization", width*.04, height*.04);
+    text("Progen Visualization", width*.10, height*.04);
 
  dataPanel.setIsPie(true);
  /**** Pie Testing Code ****/ 
@@ -164,7 +164,8 @@ void draw(){
   dataPanel.draw();
   }
   else{
-    text("Progen Visualization: "+xopt + " and " + yopt, width*.04, height*.04);
+    textAlign(LEFT);
+    text("Progen Visualization: "+xopt + " and " + yopt, width*.10, height*.04);
 
     dataPanel.setIsPie(false);
  /**** Correlation Graph Testing Code ****/
@@ -190,28 +191,38 @@ void draw(){
 
 void draw_buttons(){
  stroke(0);
- fill(255, 255, 255);
- rect(width-80, 20, 70,30); 
+ 
+ if (mouseX < width-160 + 140 && mouseX > width-160 &&
+     mouseY < 20 + 30 && mouseY > 20){
+         fill(255, 255, 0); 
+     } else {
+         fill(255, 255, 255);
+     }
+ 
+ rect(width-160, 20, 140,30); 
  fill(0);
- text("Toggle", width-75, 40);
+ textAlign(CENTER, CENTER);
+ 
  if(pie_view){
+   text("Correlation Graph", (width-160) + 70, 20+15);
     stroke(0);
     fill(255, 255, 255);
     rect(width*.2, height*.1, 70,30); 
     fill(0);
-    text("Pie 1", width*.2+5, height*.12);
+    text("Pie 1", width*.2+35, height*.1 + 15);
     stroke(0);
     fill(255, 255, 255);
     rect(width*.4, height*.1, 70,30); 
     fill(0);
-    text("Pie 2", width*.4+5, height*.12);
+    text("Pie 2", width*.4+35, height*.1 + 15);
     stroke(0);
     fill(255, 255, 255);
     rect(width*.6, height*.1, 70,30); 
     fill(0);
-    text("Pie 3", width*.6+5, height*.12);
+    text("Pie 3", width*.6+35, height*.1 + 15);
  }
  else{ //correlation view
+ text("Pie Graph", (width-160) + 70, 20+15);
   draw_options(); 
  }
 }
@@ -222,7 +233,8 @@ void draw_options(){
 }
 
 void mouseClicked(){
- if(mouseX < width-10 && mouseX > width-80 && mouseY > 20 && mouseY < 50){
+ if (mouseX < width-160 + 140 && mouseX > width-160 &&
+     mouseY < 20 + 30 && mouseY > 20){
     if(pie_view){
      pie_view = false; 
     }

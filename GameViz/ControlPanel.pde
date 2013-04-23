@@ -16,6 +16,7 @@ class ControlPanel {
   
   public void draw(){
    fill(255);
+
   rect(width*.75, height*.65, width*.23, height*.32);
   //fill(0);
    // yOpts.print_options();

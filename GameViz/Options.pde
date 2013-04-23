@@ -45,7 +45,8 @@ class Options {
 
   void print_options() {
     fill(0);
-    text(name+" variable:", x+width*.01, y);
+    textAlign(LEFT, CENTER);
+    text(name+" variable:", x+width*.02, y);
     for (int i=0; i<options.length;i++) {
       if (options[i].value == selected) {
         options[i].outline = color(255, 0, 0);
