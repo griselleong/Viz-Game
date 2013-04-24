@@ -1,0 +1,25 @@
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| Adrienne Dreyfus, Griselle Ong, Noa Palmon
+| Ben Shapiro's Game Data
+| 4.24.13
+| Tutorial
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Tutorial:
+
+The data file is progendata.csv and should be in the same directory as the run files.
+
+We have two main views: Pie Chart and Correlation Graph. 
+---------------------------
+**Pie Chart**
+Running the program will display a pie chart of the overview of the first mission. The pie chart shows what percentage of moves made in Mission 1 were each specific listed move. This allows the user to easily see overall trends in gameplay based on Mission. For example, players Mission 3 used the "U-S" move more frequently than players in Mission 1.
+
+The tabs lets you easily switch between missions. This design choice was made so that adding more missions' data won't affect the pie chart view by forcibly shrinking the size of the pies. With the tabs, each Mission gets a beautifully large pie chart that allows the viewing to see the smallest slices of the pie. 
+
+---------------------------
+**Correlation Graph**
+Choosing the Correlation view shows a distribution of the players based on two moves that you can select on the control panel in the bottom right corner. This view is used to identify outliers that had abnormal game play and might be interesting cases to study. Additionally the researcher can view overall gameplay trends by observing the clusters of players. The Mission tabs work in the same way as the Mission tabs worked in the Pie Chart View.
+---------------------------
+
+As far as we know, everything works. The one issue that's not perfect is resizing, which might mess up the orientation of text but the buttons and interaction is still perfect with a resized window. 
