@@ -31,12 +31,17 @@ Right now, I'm actually feeding it percentages - but it still works, and is gene
     sum = 0;
     for (int i=0; i<c.length; i++) {
       counts[i] = c[i];
-      println(c[i]);
       sum += c[i];
     }
     centerXCoord = x;
     centerYCoord = y;
     diameter = d;
+
+  }
+  
+  //percent is in decimal form
+  float percentToAngle(float p){
+    return p*360;  
   }
 
 
@@ -110,11 +115,18 @@ Right now, I'm actually feeding it percentages - but it still works, and is gene
   }
   
   void showPercent(int loc){
-
+    float boxWidth = 70;
+    float boxHeight = 25;
     float percent = (counts[loc]/sum)*100;
-    stroke(255);
+    println(percent);
+    stroke(0);
     fill(255, 255, 255);
-    rect(mouseX, mouseY, 70, 25);
+    rect(mouseX, mouseY, boxWidth, boxHeight);
+    
+    fill(0, 0, 0);
+    textAlign(CENTER, CENTER);
+    DecimalFormat form = new DecimalFormat("0.00"); 
+    text(form.format(percent)+"%", mouseX+(boxWidth/2), mouseY+(boxHeight/2));
     
   }
 }

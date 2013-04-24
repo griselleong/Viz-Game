@@ -79,21 +79,20 @@ class Correlation extends Graph{
  line(graphXStart, graphYStart, graphXStart, graphYEnd);
    
    
- DecimalFormat form = new DecimalFormat("0.00"); 
+ //DecimalFormat form = new DecimalFormat("0.00"); 
  
 
  //x-axis intervals
  float pos = graphXStart;
  for (float i = 0; i < xRange; i+=xInterval){
-    text(form.format(i), pos, graphYEnd + 20);
+    text(floor(i), pos, graphYEnd + 20);
     pos += graphGapWidth;
-    
  }
  
  //y-axis intervals
  pos = 0;
  for (float i = 0; i < yRange; i+=yInterval){
-    text(form.format(i), graphXStart - 45, graphYEnd - pos);
+    text(floor(i), graphXStart - 45, graphYEnd - pos);
     pos += graphGapWidth;
  } 
  }

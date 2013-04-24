@@ -8,6 +8,7 @@ HashMap moveCountsByMission;
 ArrayList<HashMap<String, float[]>> moveCountsHashes;
 ArrayList<HashMap<String, Float>> moveTotals;
 ArrayList<float[]> movePercentages;  // <missionNum, floatarrayOfPercentages
+int [] missionTotalNumMoves = {0,0,0,0};
 int missionNum;
 int totalNumMoves;
 Button mission1Button, mission2Button, mission3Button;
@@ -75,6 +76,7 @@ void setup() {
       for (int k = 0; k < moves.length; k++) {
         int moveCount = p.getCountForMove(moves[k], j);
         totalNumMoves += moveCount;
+        missionTotalNumMoves[j] += moveCount; //aggregate total num of moves for that mission
         if (moveCountsHashes.get(j).containsKey(moves[k])) {
           float[] f = moveCountsHashes.get(j).get(moves[k]);
           moveCountsHashes.get(j).get(moves[k])[i] = moveCount;
@@ -94,11 +96,12 @@ void setup() {
   }
 
   /* Calculate aggregate counts. */
+  println("MOVE COUNT HASHES: " + moveCountsHashes.size());
   for (int i=0; i<moveCountsHashes.size(); i++) {
     HashMap h = new HashMap();
     float[] percentages = new float[moves.length];
     for (int k = 0; k < moves.length; k++) {
-      float p = moveTotals.get(i).get(moves[k]) / totalNumMoves;
+      float p = moveTotals.get(i).get(moves[k]) / missionTotalNumMoves[i];
       percentages[k] = p;
     }
 
