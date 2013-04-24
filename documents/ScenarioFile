@@ -1,0 +1,22 @@
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| Adrienne Dreyfus, Griselle Ong, Noa Palmon
+| Ben Shapiro's Game Data
+| 4.24.13
+| Scenario File
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+
+
+We were able to see some interesting trends using only the basic dataset. For example, the U-S ("shock" tool) is used more frequently in Mission 3 than in Mission 1, which makes sense because Mission 3 has more opportunities to use the shock tool. 
+
+Another thing we thought was interesting that we found with our Correlation Graph was that there was one student (Player 22) who read a lot of definitions. Throughout the game the players have opportunities to look up the definitions of scientific words. Most players, according to our correlation graph did not look up any definitions but there were a few outliers who did look up some, and that one star player who read 11 in Mission 1 alone. This brings us to another cool feature of our visualization: if you want to see the distribution of players according to one variable you can just set the X and Y axis to the same variable and get a one dimension line. 
+
+If you look at the provided screenshot, you can see that players fell into a couple of clusters when filtered under "A" (how many definitions they looked up). Hovering over (0,0) shows that 115 students did not look up a single definition through Mission 1. This means that there were ~25 students who actually did bother looking up definitions. Their information is provided by hovering over the dots.
+
+We were hypothesizing that perhaps the players who take the time to read the definitions might perform well on the post-test, though since we were unable to incorporate the test score data files into our visualization at this point we are unsure. However the researcher can manually look up Player 22's demographic data and find this all out!
+
+
+
+
+We're sure that there are a lot of other interesting trends, it's just hard for us to know what to look for since we're not domain experts in this field. In the end we just wanted to make an intuitive visualization with a lot of interaction so the researchers could use our tool in many different ways. 

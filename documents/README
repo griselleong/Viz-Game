@@ -1,0 +1,13 @@
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+| Adrienne Dreyfus, Griselle Ong, Noa Palmon
+| Ben Shapiro's Game Data
+| 4.24.13
+| README
+*~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~~
+
+
+Built with Processing: main file is GameViz.pde
+Data is in one file: progendata.csv, which is hardcoded in GameViz.pde
+
+
+We had a lot of fun with this project, thank Ben Shapiro for the data! 
