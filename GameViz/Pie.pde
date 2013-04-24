@@ -4,6 +4,7 @@ class Pie extends Graph {
   float centerYCoord;
   float diameter;
   float sum;
+
   //hardcoded color scheme
   color [] colors = {
     color(255, 57, 0), 
@@ -21,7 +22,8 @@ class Pie extends Graph {
   };
 
 
-/* Note: Pie now takes in an array of 'counts' that it then figures out percentages from. Right now, I'm actually feeding it percentages - but it still works, and is generalizable!*/
+/* Note: Pie now takes in an array of 'counts' that it then figures out percentages from. 
+Right now, I'm actually feeding it percentages - but it still works, and is generalizable!*/
   Pie(float [] c, float x, float y, float d, float xStart, float xEnd, float yStart, float yEnd) {
     super(xStart, xEnd, yStart, yEnd, false); 
 
@@ -29,6 +31,7 @@ class Pie extends Graph {
     sum = 0;
     for (int i=0; i<c.length; i++) {
       counts[i] = c[i];
+      println(c[i]);
       sum += c[i];
     }
     centerXCoord = x;
@@ -62,21 +65,57 @@ class Pie extends Graph {
     //draw circle
     super.draw();
     ellipse(centerXCoord, centerYCoord, diameter, diameter);
-
+    
     float degSum = 0;
-
+    int pieHighlighted = -1;
+  
     //draw slices
     for (int i = 0; i < counts.length; i++) {
       float startAngle = degSum;
       degSum += countToAngle(counts[i]);
       float endAngle = degSum;
+      
+      color c = colors[i];
+      
+      if (mouseX != 0){
+        //calculate angle of mouse location using polar coordinate geometry
+        
+        float mouseAngle = atan(abs(centerYCoord - mouseY)/abs(mouseX - centerXCoord));
+        if (mouseX - centerXCoord < 0 && centerYCoord - mouseY > 0){ //2nd quadrant
+          mouseAngle = (PI/2 - mouseAngle) + PI/2;
+        } else if (mouseX - centerXCoord < 0 && centerYCoord - mouseY < 0){ //3rd quadrant
+          mouseAngle = mouseAngle + PI; 
+        } else if (mouseX - centerXCoord > 0 && centerYCoord - mouseY < 0){ //4th quadrant
+          mouseAngle = (PI/2 - mouseAngle) + PI + PI/2;
+        }
+        
+        float mouseRadius = sqrt(sq(mouseX - centerXCoord) + sq(centerYCoord - mouseY));
 
-      drawSlice(degToRadians(startAngle), degToRadians(endAngle), colors[i]);
+        if (mouseAngle > degToRadians(startAngle) && mouseAngle < degToRadians(endAngle)
+          && mouseRadius > 0 && mouseRadius < diameter/2){
+           c = color(0, 0, 0);
+           pieHighlighted = i;
+          } 
+      }
+      
+      drawSlice(degToRadians(startAngle), degToRadians(endAngle), c);
+    }
+    if (pieHighlighted > -1){
+      showPercent(pieHighlighted); 
     }
   }
 
   public color [] getColors() {
     return colors;
+  }
+  
+  void showPercent(int loc){
+
+    float percent = (counts[loc]/sum)*100;
+    stroke(255);
+    fill(255, 255, 255);
+    rect(mouseX, mouseY, 70, 25);
+    
   }
 }
 
