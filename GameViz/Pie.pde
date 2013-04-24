@@ -1,4 +1,5 @@
 class Pie extends Graph {
+  String [] moves;
   float [] counts;
   float centerXCoord;
   float centerYCoord;
@@ -24,9 +25,10 @@ class Pie extends Graph {
 
 /* Note: Pie now takes in an array of 'counts' that it then figures out percentages from. 
 Right now, I'm actually feeding it percentages - but it still works, and is generalizable!*/
-  Pie(float [] c, float x, float y, float d, float xStart, float xEnd, float yStart, float yEnd) {
+  Pie(String [] m, float [] c, float x, float y, float d, float xStart, float xEnd, float yStart, float yEnd) {
     super(xStart, xEnd, yStart, yEnd, false); 
 
+    moves = m;
     counts = new float[c.length];
     sum = 0;
     for (int i=0; i<c.length; i++) {
@@ -115,7 +117,7 @@ Right now, I'm actually feeding it percentages - but it still works, and is gene
   }
   
   void showPercent(int loc){
-    float boxWidth = 70;
+    float boxWidth = 80;
     float boxHeight = 25;
     float percent = (counts[loc]/sum)*100;
     println(percent);
@@ -126,7 +128,7 @@ Right now, I'm actually feeding it percentages - but it still works, and is gene
     fill(0, 0, 0);
     textAlign(CENTER, CENTER);
     DecimalFormat form = new DecimalFormat("0.00"); 
-    text(form.format(percent)+"%", mouseX+(boxWidth/2), mouseY+(boxHeight/2));
+    text(moves[loc] + ": " + form.format(percent)+"%", mouseX+(boxWidth/2), mouseY+(boxHeight/2));
     
   }
 }

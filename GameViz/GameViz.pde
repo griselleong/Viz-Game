@@ -170,15 +170,15 @@ void draw() {
     Pie p;
     if (pie == 1) {
       text("Mission 1", width*.45, 30);
-      p = new Pie(percentages, centerXCoord, centerYCoord, smallerDimension*0.75, width*.02, width*.73, height*.15, height*.97);
+      p = new Pie(moves, percentages, centerXCoord, centerYCoord, smallerDimension*0.75, width*.02, width*.73, height*.15, height*.97);
     }
     else if (pie == 2) {
       text("Mission 2", width*.45, 30);
-      p = new Pie(percentages, centerXCoord, centerYCoord, smallerDimension*0.75, width*.02, width*.73, height*.15, height*.97);
+      p = new Pie(moves, percentages, centerXCoord, centerYCoord, smallerDimension*0.75, width*.02, width*.73, height*.15, height*.97);
     }
     else { //3rd pie
       text("Mission 3", width*.45, 30);
-      p = new Pie(percentages, centerXCoord, centerYCoord, smallerDimension*0.75, width*.02, width*.73, height*.15, height*.97);
+      p = new Pie(moves, percentages, centerXCoord, centerYCoord, smallerDimension*0.75, width*.02, width*.73, height*.15, height*.97);
     }
 
     p.drawPie();  
@@ -192,11 +192,11 @@ void draw() {
     text("Progen Visualization: "+xopt + " and " + yopt , width*.10, height*.04);
 
     dataPanel.setIsPie(false);
-    /**** Correlation Graph Testing Code ****/
+    /**** Correlation Graph ****/
     float [] xData = moveCountsHashes.get(missionNum).get(xopt);
     float [] yData = moveCountsHashes.get(missionNum).get(yopt);
 
-    Correlation corr = new Correlation(xData, yData, players, width*.02, width*.73, height*.15, height*.97);
+    Correlation corr = new Correlation(xopt, yopt, xData, yData, players, width*.02, width*.73, height*.15, height*.97);
     corr.dataPanel.updateOpts(xopt, yopt, missionNum);
     corr.draw();
     corr.plot();

@@ -14,14 +14,19 @@ class Correlation extends Graph{
  float xRange;
  float yRange; 
  DataPanel dataPanel;
-  
+   
  ArrayList<Point> hovered;
  
  float xInterval;           //x axis label gap size
  float yInterval;         //y axis label gap size
  
- Correlation(float [] x, float [] y, ArrayList<Player> _players, float xStart, float xEnd, float yStart, float yEnd){
+ String xLabel;
+ String yLabel;
+ 
+ Correlation(String xL, String yL, float [] x, float [] y, ArrayList<Player> _players, float xStart, float xEnd, float yStart, float yEnd){
    super(xStart, xEnd, yStart, yEnd, true);
+   xLabel = xL;
+   yLabel = yL;
    xData = x;
    yData = y;
    players = _players;
@@ -92,9 +97,29 @@ class Correlation extends Graph{
  //y-axis intervals
  pos = 0;
  for (float i = 0; i < yRange; i+=yInterval){
-    text(floor(i), graphXStart - 45, graphYEnd - pos);
+    text(floor(i), graphXStart - 30, graphYEnd - pos);
     pos += graphGapWidth;
- } 
+ }
+
+  textAlign(CENTER, CENTER);
+  //x-axis label
+  String xL = xLabel + " Number of Moves";
+  text(xL, graphXStart + (graphXEnd - graphXStart)/2, graphYEnd + 40);
+  
+  //y-axis label
+ 
+ //translate and rotate so label will appear rotated to the side of graph
+ translate(graphXStart - 50, graphYStart + (graphYEnd - graphYStart)/2);
+ rotate(radians(270));
+ 
+ String yL = yLabel + " Number of Moves";
+ text(yL, 0, 0);
+ 
+ //reverse translation and rotation
+ rotate(radians(-270));
+ translate(-(graphXStart - 50), -(graphYStart + (graphYEnd - graphYStart)/2));
+  
+  
  }
  
 

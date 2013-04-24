@@ -16,7 +16,7 @@ class Graph {
   float totalHeight;
   float totalWidth;
 
-  float graphGapWidth = 80;  //gap size of intervals in graph
+  float graphGapWidth = 92;  //gap size of intervals in graph
   float labelWidth = width*.07; //width of label area of both axes
   float outerMargin = 30; //margin in top and right sides of graph
 
